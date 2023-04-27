@@ -15,11 +15,13 @@ class ApprovalController extends Controller
 {
     public function approve(ApproveRequest $request, ApprovalFacade $facade)
     {
+        return null;
 
     }
 
     public function reject(RejectRequest $request)
     {
+        return null;
 
     }
 
