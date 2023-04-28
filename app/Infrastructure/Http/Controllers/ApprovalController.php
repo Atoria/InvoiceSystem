@@ -3,26 +3,38 @@
 namespace App\Infrastructure\Http\Controllers;
 
 
-use App\Domain\Enums\StatusEnum;
 use App\Infrastructure\Controller;
-use App\Modules\Approval\Api\Dto\ApprovalDto;
-use App\Modules\Approval\Application\ApprovalFacade;
 use App\Modules\Approval\Infrastructure\Requests\ApproveRequest;
 use App\Modules\Approval\Infrastructure\Requests\RejectRequest;
+use App\Modules\Approval\Infrastructure\Services\ApprovalService;
+use Illuminate\Http\Request;
 
 
 class ApprovalController extends Controller
 {
-    public function approve(ApproveRequest $request, ApprovalFacade $facade)
+
+    private readonly ApprovalService $approvalService;
+
+    public function __construct(ApprovalService $approvalService)
     {
-        return null;
+        $this->approvalService = $approvalService;
+    }
+
+    public function approve(ApproveRequest $request)
+    {
+        $data = $request->validated();
+
+        $result = $this->approvalService->approveInvoice($data['id']);
+        return response()->json($result->toArray(), $result->getCode());
 
     }
 
     public function reject(RejectRequest $request)
     {
-        return null;
+        $data = $request->validated();
 
+        $result = $this->approvalService->rejectInvoice($data['id']);
+        return response()->json($result->toArray(), $result->getCode());
     }
 
 }
