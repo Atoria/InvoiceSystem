@@ -21,25 +21,17 @@ class Company extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    protected $casts = [
+        'id' => 'string',
+    ];
 
     public function invoices()
     {
         return $this->hasMany(Invoice::class);
     }
 
-
-    public function toArray()
-    {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'street' => $this->street,
-            'city' => $this->city,
-            'zip' => $this->zip,
-            'phone' => $this->phone,
-            'email' => $this->email,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
-        ];
-    }
 }

@@ -24,17 +24,9 @@ class InvoiceService
             return new ErrorResponse(404, 'Invoice not found');
         }
 
-        $invoiceLines = InvoiceProductLine::select(
-            'invoice_product_lines.quantity',
-            'products.name',
-            DB::raw('ROUND(products.price / 100,2) as price'),
-            DB::raw('ROUND((products.price * invoice_product_lines.quantity) / 100,2) as amount'),
-        )
-            ->with('invoice')
-            ->join('products', 'invoice_product_lines.product_id', '=', 'products.id')
-            ->where('invoice_product_lines.invoice_id', '=', $id)
-            ->get()
-            ->toArray();
+        $invoiceLines = InvoiceProductLine::with(['invoice','product'])
+            ->where('invoice_product_lines.invoice_id', $id)
+            ->get();
 
         if (!$invoiceLines) {
             return new ErrorResponse(404, 'Invoice lines not found');
@@ -47,10 +39,11 @@ class InvoiceService
             $total += $lineDto->totalAmount;
             $list[] = $lineDto;
         }
+
         $result = [
             'list' => $list,
             'total' => round($total, 2),
-            'company' => new CompanyDto($invoice->company->toArray()),
+            'company' => $invoice->company ? new CompanyDto($invoice->company) : null,
         ];
 
         return new SuccessResponse(200,$result);

@@ -18,6 +18,13 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    protected $casts = [
+        'id' => 'string',
+    ];
 
     public function productLines()
     {
@@ -25,15 +32,4 @@ class Product extends Model
     }
 
 
-    public function toArray()
-    {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'price' => $this->price / 100,
-            'currency' => $this->currency,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
-        ];
-    }
 }

@@ -19,6 +19,16 @@ class Invoice extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    protected $casts = [
+        'id' => 'string',
+        'company_id' => 'string',
+    ];
+
+
     public function productLines()
     {
         return $this->hasMany(InvoiceProductLine::class);
@@ -27,20 +37,5 @@ class Invoice extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
-    }
-
-
-    public function toArray()
-    {
-        return [
-            'id' => $this->id,
-            'number' => $this->number,
-            'date' => $this->date,
-            'due_date' => $this->due_date,
-            'company_id' => $this->company_id,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
-        ];
     }
 }

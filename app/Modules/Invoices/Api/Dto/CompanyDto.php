@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace App\Modules\Invoices\Api\Dto;
 
 use App\Domain\Enums\StatusEnum;
+use App\Domain\Models\Company;
 use Ramsey\Uuid\UuidInterface;
 
 final readonly class CompanyDto
 {
-    public int $id;
+    public string $id;
     public string $name;
     public string $street;
     public string $city;
@@ -17,15 +18,15 @@ final readonly class CompanyDto
     public string $phone;
     public string $email;
 
-    public function __construct($data)
+    public function __construct(Company $company)
     {
-        $this->id = $data['id'];
-        $this->name = $data['name'];
-        $this->street = $data['street'];
-        $this->city = $data['city'];
-        $this->zip = $data['zip'];
-        $this->phone = $data['phone'];
-        $this->email = $data['email'];
+        $this->id = $company->id;
+        $this->name = $company->name;
+        $this->street = $company->street;
+        $this->city = $company->city;
+        $this->zip = $company->zip;
+        $this->phone = $company->phone;
+        $this->email = $company->email;
 
     }
 }
