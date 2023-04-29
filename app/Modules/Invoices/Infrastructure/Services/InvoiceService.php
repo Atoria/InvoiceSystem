@@ -8,6 +8,7 @@ use App\Domain\Utils\ApiResponse;
 use App\Domain\Utils\ErrorResponse;
 use App\Domain\Utils\SuccessResponse;
 use App\Modules\Invoices\Api\Dto\CompanyDto;
+use App\Modules\Invoices\Api\Dto\InvoiceDto;
 use App\Modules\Invoices\Api\Dto\InvoiceLineDto;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
@@ -44,6 +45,7 @@ class InvoiceService
             'list' => $list,
             'total' => round($total, 2),
             'company' => $invoice->company ? new CompanyDto($invoice->company) : null,
+            'invoice'=> new InvoiceDto($invoice)
         ];
 
         return new SuccessResponse(200,$result);
