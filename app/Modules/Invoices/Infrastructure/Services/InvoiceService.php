@@ -4,9 +4,9 @@ namespace App\Modules\Invoices\Infrastructure\Services;
 
 use App\Domain\Models\Invoice;
 use App\Domain\Models\InvoiceProductLine;
-use App\Domain\Utils\ApiResponse;
-use App\Domain\Utils\ErrorResponse;
-use App\Domain\Utils\SuccessResponse;
+use App\Domain\ResultTransformers\ApiResponse;
+use App\Domain\ResultTransformers\ErrorResponse;
+use App\Domain\ResultTransformers\SuccessResponse;
 use App\Modules\Invoices\Api\Dto\CompanyDto;
 use App\Modules\Invoices\Api\Dto\InvoiceDto;
 use App\Modules\Invoices\Api\Dto\InvoiceLineDto;

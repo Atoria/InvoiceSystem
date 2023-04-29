@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Utils;
+namespace App\Domain\ResultTransformers;
 class  ApiResponse
 {
     protected int $code;
