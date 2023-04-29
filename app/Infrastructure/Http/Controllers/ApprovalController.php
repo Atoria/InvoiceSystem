@@ -20,20 +20,16 @@ class ApprovalController extends Controller
         $this->approvalService = $approvalService;
     }
 
-    public function approve(ApproveRequest $request)
+    public function approve($id)
     {
-        $data = $request->validated();
-
-        $result = $this->approvalService->approveInvoice($data['id']);
+        $result = $this->approvalService->approveInvoice($id);
         return response()->json($result->toArray(), $result->getCode());
 
     }
 
-    public function reject(RejectRequest $request)
+    public function reject($id)
     {
-        $data = $request->validated();
-
-        $result = $this->approvalService->rejectInvoice($data['id']);
+        $result = $this->approvalService->rejectInvoice($id);
         return response()->json($result->toArray(), $result->getCode());
     }
 

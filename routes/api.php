@@ -17,6 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/invoice/{id}/lines', [InvoiceController::class, 'list']);
-Route::patch('/approve', [ApprovalController::class, 'approve']);
-Route::patch('/reject', [ApprovalController::class, 'reject']);
+Route::patch('/approve/{id}', [ApprovalController::class, 'approve']);
+Route::patch('/reject/{id}', [ApprovalController::class, 'reject']);
 
