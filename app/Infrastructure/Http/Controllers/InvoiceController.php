@@ -3,7 +3,6 @@
 namespace App\Infrastructure\Http\Controllers;
 
 
-use App\Domain\ResultTransformers\SuccessResponse;
 use App\Infrastructure\Controller;
 use App\Modules\Invoices\Infrastructure\Services\InvoiceService;
 

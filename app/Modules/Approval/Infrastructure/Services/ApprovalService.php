@@ -4,9 +4,9 @@ namespace App\Modules\Approval\Infrastructure\Services;
 
 use App\Domain\Enums\StatusEnum;
 use App\Domain\Models\Invoice;
-use App\Domain\ResultTransformers\ApiResponse;
-use App\Domain\ResultTransformers\ErrorResponse;
-use App\Domain\ResultTransformers\SuccessResponse;
+use App\Domain\Transformers\Response\ApiResponse;
+use App\Domain\Transformers\Response\ErrorResponse;
+use App\Domain\Transformers\Response\SuccessResponse;
 use App\Modules\Approval\Api\Dto\ApprovalDto;
 use App\Modules\Approval\Application\ApprovalFacade;
 use Ramsey\Uuid\Uuid;

@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Domain\ResultTransformers;
+namespace App\Domain\Transformers\Response;
+
 class ErrorResponse extends ApiResponse
 {
     public function __construct(int $code, string $message)

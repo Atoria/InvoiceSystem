@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Domain\ResultTransformers;
+namespace App\Domain\Transformers\Response;
+
 class SuccessResponse extends ApiResponse
 {
     public function __construct(int $code, array $data)
